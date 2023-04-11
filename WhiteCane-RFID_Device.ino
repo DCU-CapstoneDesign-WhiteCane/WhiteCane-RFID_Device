@@ -7,6 +7,8 @@
 
 MFRC522 mfrc522(SDA, RST); // MFRC522 객체 생성
 
+int flag = 0; // 0: Nothing, 1: Writing
+
 void setup() {
   Serial.begin(9600); // Initialize serial communications with the PC
   SPI.begin();        // Init SPI bus
@@ -14,5 +16,13 @@ void setup() {
 }
 
 void loop() {
-  rfid_reader(); // RFID TAG 읽기
+  // data from App
+  if(Serial.available()) {
+    flag = 1;
+    process_message();
+  }
+
+  if flag == 0 {
+    rfid_reader()
+  }
 }
