@@ -22,7 +22,7 @@ void loop() {
     process_message();
   }
 
-  if flag == 0 {
-    rfid_reader()
+  if(flag == 0) {
+    rfid_reader();
   }
 }
